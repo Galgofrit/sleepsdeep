@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleeps Deep | 公式バンドウェブサイト</title>
+  <meta name="description" content="Sleeps Deepの公式ウェブサイト。最新の音楽、ツアー日程、ニュースなど。">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap');
+
+    :root {
+      --primary-blue: #00d9ff;
+      --dark-blue: #0099cc;
+      --light-blue: #33e0ff;
+      --black: #000000;
+      --dark-gray: #111111;
+      --light-gray: #ccf5ff;
+      --text-gray: #cccccc;
+      /* Keep red for some accents if needed */
+      --primary-red: #ee2917;
+      --dark-red: #8b1a0e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      background: var(--black);
+      color: var(--text-gray);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(238, 41, 23, 0.3);
+      transition: all 0.3s ease;
+      overflow: visible;
+    }
+
+    nav.scrolled {
+      padding: 0.25rem 0;
+      box-shadow: 0 2px 20px rgba(238, 41, 23, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      min-height: 75px;
+    }
+
+    .nav-container > a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      min-width: fit-content;
+    }
+
+    .logo-nav {
+      height: 75px !important;
+      width: auto !important;
+      min-width: 75px !important;
+      max-height: 75px !important;
+      filter: brightness(0) invert(1) hue-rotate(200deg) saturate(1.2) drop-shadow(0 0 10px var(--primary-blue));
+      object-fit: contain;
+      position: relative;
+      z-index: 1001;
+      flex-shrink: 0 !important;
+      display: block !important;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+      flex-shrink: 1;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .nav-links li {
+      flex-shrink: 0;
+    }
+
+    .nav-links a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 14.4px;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+      position: relative;
+      white-space: nowrap;
+      flex-shrink: 0 !important;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-red);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-red);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .mobile-menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--primary-red);
+      transition: all 0.3s ease;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 2rem 2rem;
+      background: radial-gradient(ellipse at center bottom, #222 0%, #000 70%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('assets/logos/Logo_emblem.png') center/contain no-repeat;
+      opacity: 0.05;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-logo {
+      width: 30vw;
+      max-width: 400px;
+      min-width: 200px;
+      height: auto;
+      margin-bottom: 2rem;
+      filter: brightness(0) invert(1) hue-rotate(200deg) saturate(1.2) drop-shadow(0 0 30px var(--primary-blue));
+      animation: glow 3s ease-in-out infinite alternate;
+      flex-shrink: 0 !important;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-logo {
+        width: 50vw;
+        max-width: none;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-logo {
+        width: 60vw;
+        max-width: none;
+      }
+    }
+
+    @keyframes glow {
+      from {
+        filter: brightness(0) invert(1) hue-rotate(200deg) saturate(1.2) drop-shadow(0 0 20px var(--primary-blue));
+      }
+      to {
+        filter: brightness(0) invert(1) hue-rotate(200deg) saturate(1.2) drop-shadow(0 0 40px var(--primary-blue)) drop-shadow(0 0 60px var(--light-blue));
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--light-gray);
+      text-shadow:
+        0 0 5px var(--primary-red),
+        0 0 10px var(--primary-red),
+        0 0 20px var(--primary-red),
+        0 0 40px var(--primary-red);
+      letter-spacing: 5px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--text-gray);
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: nowrap;
+      width: 30vw;
+      max-width: 400px;
+      min-width: 250px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      .cta-buttons {
+        width: 50vw;
+        max-width: 90%;
+        min-width: 200px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .cta-buttons {
+        width: 60vw;
+        max-width: 95%;
+        min-width: 180px;
+      }
+    }
+
+    .btn {
+      padding: 12px 20px;
+      background: transparent;
+      border: 2px solid var(--primary-red);
+      color: var(--primary-red);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      white-space: nowrap;
+      flex-shrink: 1;
+      flex-grow: 1;
+      flex-basis: 0;
+      display: inline-block;
+      text-align: center;
+      min-width: 0;
+    }
+
+    .btn:hover {
+      background: var(--primary-red);
+      color: var(--black);
+      box-shadow: 0 0 20px var(--primary-red);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--primary-red);
+      color: var(--black);
+    }
+
+    .btn-primary:hover {
+      background: var(--dark-red);
+      box-shadow: 0 0 30px var(--primary-red);
+    }
+
+    .social-links {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.2) translateY(-3px);
+      filter: drop-shadow(0 0 10px var(--primary-red));
+    }
+
+    .social-links svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--light-gray);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 80px 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--light-gray);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: var(--primary-red);
+      box-shadow: 0 0 10px var(--primary-red);
+    }
+
+    /* About Section */
+    .about {
+      background: var(--dark-gray);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .about-image {
+      text-align: center;
+    }
+
+    .about-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(238, 41, 23, 0.3);
+    }
+
+    /* Music Section */
+    .music {
+      background: var(--black);
+    }
+
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .music-card {
+      background: var(--dark-gray);
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid rgba(238, 41, 23, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .music-card:hover {
+      border-color: var(--primary-red);
+      box-shadow: 0 0 30px rgba(238, 41, 23, 0.3);
+      transform: translateY(-5px);
+    }
+
+    .music-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary-red);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .music-card p {
+      margin-bottom: 1rem;
+      color: var(--text-gray);
+    }
+
+    .music-player {
+      width: 100%;
+      height: 200px;
+      background: var(--black);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-gray);
+      border: 1px solid rgba(238, 41, 23, 0.2);
+    }
+
+    /* Tour Dates */
+    .tour {
+      background: var(--dark-gray);
+    }
+
+    .tour-dates {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .tour-date {
+      background: var(--black);
+      padding: 2rem;
+      border-left: 4px solid var(--primary-red);
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .tour-date:hover {
+      transform: translateX(10px);
+      box-shadow: 0 0 20px rgba(238, 41, 23, 0.3);
+    }
+
+    .tour-date-info h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary-red);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .tour-date-info p {
+      color: var(--text-gray);
+      margin-bottom: 0.25rem;
+    }
+
+    .tour-date-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .no-dates {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-gray);
+      font-size: 1.2rem;
+    }
+
+    /* Media/Gallery */
+    .media {
+      background: var(--black);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 2px solid rgba(238, 41, 23, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      border-color: var(--primary-red);
+      box-shadow: 0 0 20px rgba(238, 41, 23, 0.5);
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-placeholder {
+      aspect-ratio: 1;
+      background: var(--dark-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-gray);
+      font-size: 1.1rem;
+    }
+
+    /* Fullscreen Image Modal */
+    .image-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .image-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .image-modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      margin: auto;
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .image-modal-content img {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 0 50px rgba(238, 41, 23, 0.3);
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: var(--text-gray);
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(238, 41, 23, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .image-modal-close:hover {
+      background: rgba(238, 41, 23, 0.8);
+      border-color: var(--primary-red);
+      transform: rotate(90deg);
+      box-shadow: 0 0 20px var(--primary-red);
+    }
+
+    .image-modal-close::before,
+    .image-modal-close::after {
+      content: '';
+      position: absolute;
+      width: 3px;
+      height: 25px;
+      background: var(--text-gray);
+    }
+
+    .image-modal-close::before {
+      transform: rotate(45deg);
+    }
+
+    .image-modal-close::after {
+      transform: rotate(-45deg);
+    }
+
+    /* Contact & Newsletter */
+    .contact {
+      background: var(--dark-gray);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-info h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary-red);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .contact-form {
+      background: var(--black);
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid rgba(238, 41, 23, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-gray);
+      font-weight: 700;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      background: var(--dark-gray);
+      border: 1px solid rgba(238, 41, 23, 0.3);
+      color: var(--text-gray);
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-red);
+      box-shadow: 0 0 10px rgba(238, 41, 23, 0.3);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .newsletter {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--black);
+      border-radius: 10px;
+      border: 1px solid rgba(238, 41, 23, 0.3);
+      text-align: center;
+    }
+
+    .newsletter h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary-red);
+      margin-bottom: 1rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px;
+      background: var(--dark-gray);
+      border: 1px solid rgba(238, 41, 23, 0.3);
+      color: var(--text-gray);
+      border-radius: 5px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(238, 41, 23, 0.3);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      height: 40px;
+      width: auto;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+      filter: brightness(0) invert(1) hue-rotate(200deg) saturate(1.2);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-gray);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-red);
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .footer-social a {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-social svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--text-gray);
+      transition: fill 0.3s ease;
+    }
+
+    .footer-social a:hover svg {
+      fill: var(--primary-red);
+    }
+
+    .copyright {
+      margin-top: 1rem;
+      color: var(--text-gray);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(0, 0, 0, 0.98);
+        flex-direction: column;
+        padding: 2rem;
+        transition: left 0.3s ease;
+        border-top: 1px solid rgba(238, 41, 23, 0.3);
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-logo {
+        width: 50vw !important;
+        max-width: none !important;
+      }
+      
+      .cta-buttons {
+        width: 50vw;
+        max-width: 90%;
+      }
+      
+      .btn {
+        min-width: 120px;
+        font-size: 14px !important;
+      }
+
+      .about-content,
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .tour-date {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      section {
+        padding: 60px 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#home">
+        <img src="assets/logos/Logo_emblem.png" alt="Sleeps Deep Logo" class="logo-nav">
+      </a>
+      <div class="mobile-menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" data-i18n="nav.home">ホーム</a></li>
+        <li><a href="#about" data-i18n="nav.about">アバウト</a></li>
+        <li><a href="#music" data-i18n="nav.music">ミュージック</a></li>
+        <li><a href="#tour" data-i18n="nav.tour">ツアー</a></li>
+        <li><a href="#media" data-i18n="nav.media">メディア</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">お問い合わせ</a></li>
+        <li>
+          <a href="index.html" style="color: var(--primary-red); text-decoration: none; font-weight: 700; font-size: 14.4px; text-transform: uppercase; letter-spacing: 1px;">EN</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <img src="assets/logos/Logo_vector.svg" alt="Sleeps Deep" class="hero-logo">
+      <div class="cta-buttons">
+        <a href="#music" class="btn btn-primary" data-i18n="hero.listenNow">Listen Now</a>
+        <a href="#tour" class="btn" data-i18n="hero.tourDates">Tour Dates</a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.instagram.com/_sleeps_deep" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffe8e6">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <h2 class="section-title" data-i18n="about.title">About</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p data-i18n="about.text1">
+          Sleeps Deep is a 5-member band formed in 2024 by members who met while studying at MI Tokyo. 
+          With a shared desire to express powerful ideas and messages, they came together to create music.
+        </p>
+        <p data-i18n="about.text2">
+          Their sound blends elements of metalcore, hard rock, and heavy metal, creating a powerful 
+          and dynamic musical experience that captures the intensity of modern heavy music.
+        </p>
+        <p data-i18n="about.text3">
+          Their goal is to create powerful melodies with meaningful lyrics, hoping that their music 
+          deeply resonates with listeners and connects with those who seek authenticity and emotional 
+          depth in their musical journey.
+        </p>
+      </div>
+      <div class="about-image">
+        <img src="artist_photos/Stairs.png" alt="Sleeps Deep Band Photo">
+      </div>
+    </div>
+  </section>
+
+  <!-- Music Section -->
+  <section class="music" id="music">
+    <h2 class="section-title" data-i18n="music.title">Music</h2>
+    <div class="music-grid">
+      <div class="music-card">
+        <h3 data-i18n="music.latestRelease">Latest Release</h3>
+        <p data-i18n="music.checkBack">Check back soon for new music and releases.</p>
+        <div class="music-player">
+          <p data-i18n="music.playerComingSoon">Music Player Coming Soon</p>
+        </div>
+      </div>
+      <div class="music-card">
+        <h3 data-i18n="music.discography">Discography</h3>
+        <p data-i18n="music.catalog">Our complete catalog of recordings and releases will be available here.</p>
+        <p><strong data-i18n="music.stayTuned">Stay tuned for updates!</strong></p>
+      </div>
+      <div class="music-card">
+        <h3 data-i18n="music.streaming">Streaming</h3>
+        <p data-i18n="music.streamingText">Find us on all major streaming platforms:</p>
+        <ul style="list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 0.5rem;">• Spotify</li>
+          <li style="margin-bottom: 0.5rem;">• Apple Music</li>
+          <li style="margin-bottom: 0.5rem;">• Bandcamp</li>
+          <li style="margin-bottom: 0.5rem;">• YouTube Music</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tour Dates -->
+  <section class="tour" id="tour">
+    <h2 class="section-title" data-i18n="tour.title">Tour Dates</h2>
+    <div class="tour-dates">
+      <div class="no-dates">
+        <p data-i18n="tour.comingSoon">🎸 New tour dates coming soon. Stay tuned for announcements!</p>
+        <p style="margin-top: 1rem; font-size: 1rem;" data-i18n="tour.followSocial">Follow us on social media for the latest updates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media/Gallery -->
+  <section class="media" id="media">
+    <h2 class="section-title" data-i18n="media.title">Media</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="artist_photos/LiveHands.png" alt="Sleeps Deep Live Performance">
+      </div>
+      <div class="gallery-item">
+        <img src="artist_photos/Stairs.png" alt="Sleeps Deep Band Photo">
+      </div>
+      <div class="gallery-placeholder">
+        <p data-i18n="media.morePhotos">More photos coming soon</p>
+      </div>
+      <div class="gallery-placeholder">
+        <p data-i18n="media.morePhotos">More photos coming soon</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <h2 class="section-title" data-i18n="contact.title">Contact</h2>
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3 data-i18n="contact.getInTouch">Get In Touch</h3>
+        <p data-i18n="contact.description">
+          For booking inquiries, press requests, or general questions, 
+          please reach out to us using the form or connect with us on social media.
+        </p>
+        <p>
+          <strong data-i18n="contact.booking">Booking:</strong> booking@sleepsdeep.jp<br>
+          <strong data-i18n="contact.press">Press:</strong> press@sleepsdeep.jp<br>
+          <strong data-i18n="contact.general">General:</strong> info@sleepsdeep.jp
+        </p>
+        <div style="margin-top: 2rem;">
+          <h3 style="margin-bottom: 1rem;" data-i18n="contact.followUs">Follow Us</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/_sleeps_deep" target="_blank" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffe8e6">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form">
+          <h3 style="font-family: 'Orbitron', sans-serif; color: var(--primary-red); margin-bottom: 1rem;" data-i18n="contact.sendMessage">Send Us a Message</h3>
+          <form id="contactForm" action="https://formsubmit.co/info@sleepsdeep.jp" method="POST">
+            <input type="hidden" name="_subject" value="New Contact Form Submission - Sleeps Deep Website">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="">
+            <div class="form-group">
+              <label for="name" data-i18n="form.name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email" data-i18n="form.email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="subject" data-i18n="form.subject">Subject</label>
+              <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+              <label for="message" data-i18n="form.message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="form.sendButton">Send Message</button>
+          </form>
+        </div>
+        <div class="newsletter">
+          <h3 data-i18n="newsletter.title">Stay Updated</h3>
+          <p style="margin-bottom: 1rem; color: var(--text-gray);" data-i18n="newsletter.description">Subscribe to our newsletter for the latest news, releases, and tour dates.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" id="newsletterEmail" placeholder="メールアドレスを入力" data-i18n="form.emailPlaceholder" required>
+            <button type="submit" class="btn btn-primary" data-i18n="newsletter.subscribe">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <img src="assets/logos/Logo_vector.svg" alt="Sleeps Deep" class="footer-logo">
+      <div class="footer-links">
+        <a href="#home" data-i18n="nav.home">Home</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#music" data-i18n="nav.music">Music</a>
+        <a href="#tour" data-i18n="nav.tour">Tour</a>
+        <a href="#media" data-i18n="nav.media">Media</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/_sleeps_deep" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+      </div>
+      <div class="copyright">
+        <p data-i18n="footer.copyright">&copy; 2024 Sleeps Deep. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Fullscreen Image Modal -->
+  <div id="imageModal" class="image-modal">
+    <span class="image-modal-close" id="closeModal"></span>
+    <div class="image-modal-content">
+      <img id="modalImage" src="" alt="Fullscreen Image">
+    </div>
+  </div>
+
+  <!-- Load translations from JS file (works with file:// protocol) -->
+  <script src="translations.js"></script>
+
+  <script>
+    // Translations are loaded from translations.js
+    let currentLanguage = 'jp';
+
+    function loadTranslations() {
+      // Translations object is already available from translations.js
+      if (typeof translations !== 'undefined') {
+        updateLanguage(currentLanguage);
+      } else {
+        console.error('Translations not loaded from translations.js');
+      }
+    }
+
+    function updateLanguage(lang) {
+      currentLanguage = lang;
+      
+      if (!translations[lang]) {
+        console.error('Translations not loaded for language:', lang);
+        return;
+      }
+      
+      // Update all elements with data-i18n attribute
+      const elements = document.querySelectorAll('[data-i18n]');
+      
+      elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (!key) return;
+        
+        const keys = key.split('.');
+        let translation = translations[lang];
+        
+        for (let k of keys) {
+          if (translation && typeof translation === 'object') {
+            translation = translation[k];
+          } else {
+            translation = null;
+            break;
+          }
+        }
+        
+        if (translation && translation !== null && translation !== '') {
+          if (element.tagName === 'INPUT' && key.includes('emailPlaceholder')) {
+            element.placeholder = translation;
+          } else {
+            // Clear existing text and set new translation
+            element.textContent = translation;
+          }
+        }
+      });
+
+      // Update page title and meta description
+      if (translations[lang] && translations[lang].meta) {
+        document.title = translations[lang].meta.title;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.content = translations[lang].meta.description;
+        }
+      }
+      
+      // Adjust button font size after language change
+      setTimeout(() => {
+        adjustButtonFontSize();
+      }, 50);
+    }
+
+    // Function to adjust button font size to fit two buttons on one line
+    function adjustButtonFontSize() {
+      const buttons = document.querySelectorAll('.cta-buttons .btn');
+      if (buttons.length !== 2) return;
+      
+      const container = document.querySelector('.cta-buttons');
+      if (!container) return;
+      
+      // Get the actual available width from the container
+      const containerWidth = container.offsetWidth;
+      const availableWidth = containerWidth - 16; // Subtract gap (1rem = 16px)
+      const minFontSize = 12;
+      const maxFontSize = 21;
+      
+      // Check if Japanese and reduce max font size by 5%
+      const isJapanese = currentLanguage === 'jp';
+      const adjustedMaxFontSize = isJapanese ? Math.floor(maxFontSize * 0.95) : maxFontSize;
+      
+      // Binary search for optimal font size
+      let low = minFontSize;
+      let high = adjustedMaxFontSize;
+      let bestSize = adjustedMaxFontSize;
+      
+      // Test with a temporary element
+      const testElement = document.createElement('span');
+      testElement.style.visibility = 'hidden';
+      testElement.style.position = 'absolute';
+      testElement.style.fontFamily = 'Orbitron, sans-serif';
+      testElement.style.fontWeight = '700';
+      testElement.style.textTransform = 'uppercase';
+      testElement.style.letterSpacing = '1px';
+      testElement.style.whiteSpace = 'nowrap';
+      document.body.appendChild(testElement);
+      
+      while (low <= high) {
+        const mid = Math.floor((low + high) / 2);
+        testElement.style.fontSize = mid + 'px';
+        
+        let totalWidth = 0;
+        buttons.forEach((btn, index) => {
+          testElement.textContent = btn.textContent;
+          const width = testElement.offsetWidth;
+          // Add padding: 12px * 2 + 20px * 2 = 64px per button
+          totalWidth += width + 64;
+        });
+        totalWidth += 16; // gap
+        
+        if (totalWidth <= availableWidth) {
+          bestSize = mid;
+          low = mid + 1;
+        } else {
+          high = mid - 1;
+        }
+      }
+      
+      document.body.removeChild(testElement);
+      
+      // Apply the calculated font size
+      buttons.forEach(btn => {
+        btn.style.fontSize = bestSize + 'px';
+      });
+    }
+
+    // Initialize on page load
+    loadTranslations();
+    
+    // Adjust button font size after translations load
+    setTimeout(() => {
+      adjustButtonFontSize();
+    }, 100);
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80; // Account for fixed navbar
+          const targetPosition = target.offsetTop - offset;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Contact form submission
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+      
+      // Show loading state
+      const sendingText = translations[currentLanguage]?.form?.sending || 'Sending...';
+      submitButton.textContent = sendingText;
+      submitButton.disabled = true;
+      
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          const successMsg = translations[currentLanguage]?.alerts?.messageSent || 'Thank you for your message! We will get back to you soon.';
+          alert(successMsg);
+          form.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        const errorMsg = translations[currentLanguage]?.alerts?.messageError || 'There was an error sending your message. Please try again or email us directly at info@sleepsdeep.jp';
+        alert(errorMsg);
+      } finally {
+        const sendText = translations[currentLanguage]?.form?.sendButton || 'Send Message';
+        submitButton.textContent = sendText;
+        submitButton.disabled = false;
+      }
+    });
+
+    // Newsletter form submission
+    document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const subscribedMsg = translations[currentLanguage]?.alerts?.subscribed || 'Thank you for subscribing!';
+      alert(subscribedMsg);
+      e.target.reset();
+    });
+
+    // Fullscreen image modal
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+
+    // Open modal when clicking on gallery images
+    galleryItems.forEach(img => {
+      img.addEventListener('click', function() {
+        modalImage.src = this.src;
+        modalImage.alt = this.alt;
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+      });
+    });
+
+    // Close modal when clicking X
+    closeModal.addEventListener('click', () => {
+      imageModal.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scrolling
+    });
+
+    // Close modal when clicking outside the image
+    imageModal.addEventListener('click', function(e) {
+      if (e.target === imageModal) {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+      }
+    });
+  </script>
+</body>
+</html>

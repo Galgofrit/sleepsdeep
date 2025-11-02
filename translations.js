@@ -1,0 +1,156 @@
+const translations = 
+{
+  "en": {
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "music": "Music",
+      "tour": "Tour",
+      "media": "Media",
+      "contact": "Contact"
+    },
+    "hero": {
+      "listenNow": "Listen Now",
+      "tourDates": "Show Dates"
+    },
+    "about": {
+      "title": "About",
+      "text1": "Sleeps Deep is a 5-member band formed in 2024 by members who met while studying at MI Tokyo. With a shared desire to express powerful ideas and messages, they came together to create music.",
+      "text2": "Their sound blends elements of metalcore, hard rock, and heavy metal, creating a powerful and dynamic musical experience that captures the intensity of modern heavy music.",
+      "text3": "Their goal is to create powerful melodies with meaningful lyrics, hoping that their music deeply resonates with listeners and connects with those who seek authenticity and emotional depth in their musical journey."
+    },
+    "music": {
+      "title": "Music",
+      "latestRelease": "Latest Release",
+      "checkBack": "Check back soon for new music and releases.",
+      "playerComingSoon": "Music Player Coming Soon",
+      "discography": "Discography",
+      "catalog": "Our complete catalog of recordings and releases will be available here.",
+      "stayTuned": "Stay tuned for updates!",
+      "streaming": "Streaming",
+      "streamingText": "Find us on all major streaming platforms:"
+    },
+    "tour": {
+      "title": "Show Dates",
+      "comingSoon": "🎸 New show dates coming soon. Stay tuned for announcements!",
+      "followSocial": "Follow us on social media for the latest updates."
+    },
+    "media": {
+      "title": "Media",
+      "morePhotos": "More photos coming soon"
+    },
+    "contact": {
+      "title": "Contact",
+      "getInTouch": "Get In Touch",
+      "description": "For booking inquiries, press requests, or general questions, please reach out to us using the form or connect with us on social media.",
+      "booking": "Booking:",
+      "press": "Press:",
+      "general": "General:",
+      "followUs": "Follow Us",
+      "sendMessage": "Send Us a Message"
+    },
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "sendButton": "Send Message",
+      "sending": "Sending...",
+      "emailPlaceholder": "Enter your email"
+    },
+    "newsletter": {
+      "title": "Stay Updated",
+      "description": "Subscribe to our newsletter for the latest news, releases, and tour dates.",
+      "subscribe": "Subscribe"
+    },
+    "footer": {
+      "copyright": "© 2024 Sleeps Deep. All rights reserved."
+    },
+    "alerts": {
+      "messageSent": "Thank you for your message! We will get back to you soon.",
+      "messageError": "There was an error sending your message. Please try again or email us directly at info@sleepsdeep.jp",
+      "subscribed": "Thank you for subscribing!"
+    },
+    "meta": {
+      "title": "Sleeps Deep | Official Band Website",
+      "description": "Official website of Sleeps Deep. Latest music, tour dates, news, and more."
+    }
+  },
+  "jp": {
+    "nav": {
+      "home": "ホーム",
+      "about": "アバウト",
+      "music": "ミュージック",
+      "tour": "ツアー",
+      "media": "メディア",
+      "contact": "お問い合わせ"
+    },
+        "hero": {
+          "listenNow": "今すぐ聴く",
+          "tourDates": "ショー日程"
+        },
+    "about": {
+      "title": "アバウト",
+      "text1": "Sleeps Deepは、MI東京で勉強しながら出会ったメンバーによって2024年に結成された5人組のバンドです。強力なアイデアやメッセージを表現したいという共通の願望で、彼らは一緒になって音楽を作りました。",
+      "text2": "彼らのサウンドは、メタルコア、ハードロック、ヘビーメタルの要素をブレンドしています。",
+      "text3": "彼らの目標は、意味のある歌詞でパワフルなメロディーを作ることであり、彼らの音楽がリスナーと深く共鳴することを望んでいます。"
+    },
+    "music": {
+      "title": "ミュージック",
+      "latestRelease": "最新リリース",
+      "checkBack": "新しい音楽とリリースをチェックしてください。",
+      "playerComingSoon": "ミュージックプレーヤーは近日公開",
+      "discography": "ディスコグラフィー",
+      "catalog": "録音とリリースの完全なカタログがここで利用可能になります。",
+      "stayTuned": "更新をお待ちください！",
+      "streaming": "ストリーミング",
+      "streamingText": "主要なストリーミングプラットフォームで見つけてください："
+    },
+        "tour": {
+          "title": "ショー日程",
+          "comingSoon": "🎸 新しいショー日程が近日公開予定です。発表をお待ちください！",
+          "followSocial": "最新情報については、ソーシャルメディアでフォローしてください。"
+        },
+    "media": {
+      "title": "メディア",
+      "morePhotos": "さらに写真が近日公開されます"
+    },
+    "contact": {
+      "title": "お問い合わせ",
+      "getInTouch": "お問い合わせ",
+      "description": "予約に関するお問い合わせ、プレスリクエスト、または一般的なご質問については、フォームを使用してお問い合わせいただくか、ソーシャルメディアでお問い合わせください。",
+      "booking": "予約:",
+      "press": "プレス:",
+      "general": "一般:",
+      "followUs": "フォローする",
+      "sendMessage": "メッセージを送信"
+    },
+    "form": {
+      "name": "名前",
+      "email": "メール",
+      "subject": "件名",
+      "message": "メッセージ",
+      "sendButton": "メッセージを送信",
+      "sending": "送信中...",
+      "emailPlaceholder": "メールアドレスを入力"
+    },
+    "newsletter": {
+      "title": "最新情報を受け取る",
+      "description": "最新のニュース、リリース、ツアー日程についてニュースレターにご登録ください。",
+      "subscribe": "登録"
+    },
+    "footer": {
+      "copyright": "© 2024 Sleeps Deep. All rights reserved."
+    },
+    "alerts": {
+      "messageSent": "メッセージをありがとうございます！すぐにご連絡いたします。",
+      "messageError": "メッセージの送信にエラーが発生しました。もう一度お試しいただくか、info@sleepsdeep.jpに直接メールしてください。",
+      "subscribed": "ご登録ありがとうございます！"
+    },
+    "meta": {
+      "title": "Sleeps Deep | 公式バンドウェブサイト",
+      "description": "Sleeps Deepの公式ウェブサイト。最新の音楽、ツアー日程、ニュースなど。"
+    }
+  }
+}
+;
