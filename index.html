@@ -1122,6 +1122,79 @@
   <script src="translations.js"></script>
 
   <script>
+    // Cookie helper functions
+    function setCookie(name, value, days) {
+      const expires = new Date();
+      expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+    }
+
+    function getCookie(name) {
+      const nameEQ = name + '=';
+      const ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    // Detect preferred language from browser or geolocation
+    function detectLanguage() {
+      // First, check if user has a saved preference
+      const savedLang = getCookie('preferredLanguage');
+      if (savedLang === 'en' || savedLang === 'jp') {
+        return savedLang;
+      }
+
+      // If no cookie, detect from browser language
+      const browserLang = navigator.language || navigator.userLanguage;
+      if (browserLang.startsWith('ja')) {
+        return 'jp';
+      }
+      return 'en'; // Default to English
+    }
+
+    // Handle language switching and cookie setting
+    function setupLanguageLinks() {
+      const langLinks = document.querySelectorAll('a[href*="index-jp.html"], a[href*="index.html"]');
+      langLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          // Determine target language
+          const targetLang = this.href.includes('index-jp.html') ? 'jp' : 'en';
+          setCookie('preferredLanguage', targetLang, 365); // Save for 1 year
+        });
+      });
+    }
+
+    // Check if we should redirect based on preferred language
+    function checkLanguageRedirect() {
+      const currentPath = window.location.pathname;
+      const detectedLang = detectLanguage();
+      
+      // If user is on English page but prefers Japanese
+      if (detectedLang === 'jp' && !currentPath.includes('index-jp.html')) {
+        window.location.href = 'index-jp.html';
+        return true;
+      }
+      
+      // If user is on Japanese page but prefers English
+      if (detectedLang === 'en' && currentPath.includes('index-jp.html')) {
+        window.location.href = 'index.html';
+        return true;
+      }
+      
+      return false;
+    }
+
+    // Check on page load (only redirect if it's the first visit or no cookie exists)
+    const savedLang = getCookie('preferredLanguage');
+    if (!savedLang) {
+      // First visit - check language and redirect if needed
+      checkLanguageRedirect();
+    }
+
     // Translations are loaded from translations.js
     let currentLanguage = 'en';
 
@@ -1248,6 +1321,9 @@
         btn.style.fontSize = bestSize + 'px';
       });
     }
+
+    // Setup language links with cookie saving
+    setupLanguageLinks();
 
     // Initialize on page load
     loadTranslations();
