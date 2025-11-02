@@ -29,10 +29,12 @@
 
     html {
       scroll-behavior: smooth;
+      font-size: 16px;
     }
 
     body {
       font-family: 'Roboto', sans-serif;
+      font-size: 16px;
       background: var(--black);
       color: var(--text-gray);
       line-height: 1.6;
@@ -66,21 +68,28 @@
       justify-content: space-between;
       align-items: center;
       position: relative;
+      min-height: 75px;
     }
 
     .nav-container > a {
       position: relative;
       display: flex;
       align-items: center;
+      flex-shrink: 0;
+      min-width: fit-content;
     }
 
     .logo-nav {
-      height: 75px;
-      width: auto;
+      height: 75px !important;
+      width: auto !important;
+      min-width: 75px !important;
+      max-height: 75px !important;
       filter: brightness(0) invert(1) hue-rotate(200deg) saturate(1.2) drop-shadow(0 0 10px var(--primary-blue));
       object-fit: contain;
       position: relative;
       z-index: 1001;
+      flex-shrink: 0 !important;
+      display: block !important;
     }
 
     .nav-links {
@@ -88,6 +97,13 @@
       list-style: none;
       gap: 2rem;
       align-items: center;
+      flex-shrink: 1;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .nav-links li {
+      flex-shrink: 0;
     }
 
     .nav-links a {
@@ -95,10 +111,12 @@
       text-decoration: none;
       font-weight: 700;
       text-transform: uppercase;
-      font-size: 0.9rem;
+      font-size: 14.4px;
       letter-spacing: 1px;
       transition: color 0.3s ease;
       position: relative;
+      white-space: nowrap;
+      flex-shrink: 0 !important;
     }
 
     .nav-links a::after {
@@ -119,6 +137,7 @@
     .nav-links a:hover::after {
       width: 100%;
     }
+
 
     .mobile-menu-toggle {
       display: none;
@@ -164,15 +183,41 @@
       position: relative;
       z-index: 1;
       max-width: 800px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .hero-logo {
-      max-width: 600px;
-      width: 100%;
+      width: 400px;
+      max-width: 100%;
       height: auto;
       margin-bottom: 2rem;
       filter: brightness(0) invert(1) hue-rotate(200deg) saturate(1.2) drop-shadow(0 0 30px var(--primary-blue));
       animation: glow 3s ease-in-out infinite alternate;
+      flex-shrink: 0 !important;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-logo {
+        width: 70%;
+        max-width: 70%;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .hero-logo {
+        width: 60%;
+        max-width: 60%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-logo {
+        width: 50%;
+        max-width: 50%;
+      }
     }
 
     @keyframes glow {
@@ -209,21 +254,53 @@
       display: flex;
       gap: 1rem;
       justify-content: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      width: 400px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      .cta-buttons {
+        width: 70%;
+        max-width: 70%;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .cta-buttons {
+        width: 60%;
+        max-width: 60%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .cta-buttons {
+        width: 50%;
+        max-width: 50%;
+      }
     }
 
     .btn {
-      padding: 12px 30px;
+      padding: 12px 20px;
       background: transparent;
       border: 2px solid var(--primary-red);
       color: var(--primary-red);
       text-decoration: none;
       text-transform: uppercase;
       font-weight: 700;
+      font-size: 16px;
       letter-spacing: 1px;
       transition: all 0.3s ease;
       cursor: pointer;
       font-family: 'Orbitron', sans-serif;
+      white-space: nowrap;
+      flex-shrink: 1;
+      flex-grow: 1;
+      flex-basis: 0;
+      display: inline-block;
+      text-align: center;
+      min-width: 0;
     }
 
     .btn:hover {
@@ -774,7 +851,18 @@
       }
 
       .hero-logo {
-        max-width: 90%;
+        width: 70% !important;
+        max-width: 70% !important;
+      }
+      
+      .cta-buttons {
+        max-width: 70%;
+        width: 70%;
+      }
+      
+      .btn {
+        min-width: 120px;
+        font-size: 14px !important;
       }
 
       .about-content,
@@ -828,12 +916,15 @@
         <span></span>
       </div>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#music">Music</a></li>
-        <li><a href="#tour">Tour</a></li>
-        <li><a href="#media">Media</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#music" data-i18n="nav.music">Music</a></li>
+        <li><a href="#tour" data-i18n="nav.tour">Tour</a></li>
+        <li><a href="#media" data-i18n="nav.media">Media</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        <li>
+          <a href="index-jp.html" style="color: var(--primary-red); text-decoration: none; font-weight: 700; font-size: 14.4px; text-transform: uppercase; letter-spacing: 1px;">JP</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -843,8 +934,8 @@
     <div class="hero-content">
       <img src="assets/logos/Logo_vector.svg" alt="Sleeps Deep" class="hero-logo">
       <div class="cta-buttons">
-        <a href="#music" class="btn btn-primary">Listen Now</a>
-        <a href="#tour" class="btn">Tour Dates</a>
+        <a href="#music" class="btn btn-primary" data-i18n="hero.listenNow">Listen Now</a>
+        <a href="#tour" class="btn" data-i18n="hero.tourDates">Tour Dates</a>
       </div>
       <div class="social-links">
         <a href="https://www.instagram.com/_sleeps_deep" target="_blank" aria-label="Instagram">
@@ -858,18 +949,18 @@
 
   <!-- About Section -->
   <section class="about" id="about">
-    <h2 class="section-title">About</h2>
+    <h2 class="section-title" data-i18n="about.title">About</h2>
     <div class="about-content">
       <div class="about-text">
-        <p>
+        <p data-i18n="about.text1">
           Sleeps Deep is a 5-member band formed in 2024 by members who met while studying at MI Tokyo. 
           With a shared desire to express powerful ideas and messages, they came together to create music.
         </p>
-        <p>
+        <p data-i18n="about.text2">
           Their sound blends elements of metalcore, hard rock, and heavy metal, creating a powerful 
           and dynamic musical experience that captures the intensity of modern heavy music.
         </p>
-        <p>
+        <p data-i18n="about.text3">
           Their goal is to create powerful melodies with meaningful lyrics, hoping that their music 
           deeply resonates with listeners and connects with those who seek authenticity and emotional 
           depth in their musical journey.
@@ -883,23 +974,23 @@
 
   <!-- Music Section -->
   <section class="music" id="music">
-    <h2 class="section-title">Music</h2>
+    <h2 class="section-title" data-i18n="music.title">Music</h2>
     <div class="music-grid">
       <div class="music-card">
-        <h3>Latest Release</h3>
-        <p>Check back soon for new music and releases.</p>
+        <h3 data-i18n="music.latestRelease">Latest Release</h3>
+        <p data-i18n="music.checkBack">Check back soon for new music and releases.</p>
         <div class="music-player">
-          <p>Music Player Coming Soon</p>
+          <p data-i18n="music.playerComingSoon">Music Player Coming Soon</p>
         </div>
       </div>
       <div class="music-card">
-        <h3>Discography</h3>
-        <p>Our complete catalog of recordings and releases will be available here.</p>
-        <p><strong>Stay tuned for updates!</strong></p>
+        <h3 data-i18n="music.discography">Discography</h3>
+        <p data-i18n="music.catalog">Our complete catalog of recordings and releases will be available here.</p>
+        <p><strong data-i18n="music.stayTuned">Stay tuned for updates!</strong></p>
       </div>
       <div class="music-card">
-        <h3>Streaming</h3>
-        <p>Find us on all major streaming platforms:</p>
+        <h3 data-i18n="music.streaming">Streaming</h3>
+        <p data-i18n="music.streamingText">Find us on all major streaming platforms:</p>
         <ul style="list-style: none; padding-left: 0;">
           <li style="margin-bottom: 0.5rem;">• Spotify</li>
           <li style="margin-bottom: 0.5rem;">• Apple Music</li>
@@ -912,18 +1003,18 @@
 
   <!-- Tour Dates -->
   <section class="tour" id="tour">
-    <h2 class="section-title">Tour Dates</h2>
+    <h2 class="section-title" data-i18n="tour.title">Tour Dates</h2>
     <div class="tour-dates">
       <div class="no-dates">
-        <p>🎸 New tour dates coming soon. Stay tuned for announcements!</p>
-        <p style="margin-top: 1rem; font-size: 1rem;">Follow us on social media for the latest updates.</p>
+        <p data-i18n="tour.comingSoon">🎸 New tour dates coming soon. Stay tuned for announcements!</p>
+        <p style="margin-top: 1rem; font-size: 1rem;" data-i18n="tour.followSocial">Follow us on social media for the latest updates.</p>
       </div>
     </div>
   </section>
 
   <!-- Media/Gallery -->
   <section class="media" id="media">
-    <h2 class="section-title">Media</h2>
+    <h2 class="section-title" data-i18n="media.title">Media</h2>
     <div class="gallery">
       <div class="gallery-item">
         <img src="artist_photos/LiveHands.png" alt="Sleeps Deep Live Performance">
@@ -932,31 +1023,31 @@
         <img src="artist_photos/Stairs.png" alt="Sleeps Deep Band Photo">
       </div>
       <div class="gallery-placeholder">
-        <p>More photos coming soon</p>
+        <p data-i18n="media.morePhotos">More photos coming soon</p>
       </div>
       <div class="gallery-placeholder">
-        <p>More photos coming soon</p>
+        <p data-i18n="media.morePhotos">More photos coming soon</p>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
   <section class="contact" id="contact">
-    <h2 class="section-title">Contact</h2>
+    <h2 class="section-title" data-i18n="contact.title">Contact</h2>
     <div class="contact-content">
       <div class="contact-info">
-        <h3>Get In Touch</h3>
-        <p>
+        <h3 data-i18n="contact.getInTouch">Get In Touch</h3>
+        <p data-i18n="contact.description">
           For booking inquiries, press requests, or general questions, 
           please reach out to us using the form or connect with us on social media.
         </p>
         <p>
-          <strong>Booking:</strong> booking@sleepsdeep.jp<br>
-          <strong>Press:</strong> press@sleepsdeep.jp<br>
-          <strong>General:</strong> info@sleepsdeep.jp
+          <strong data-i18n="contact.booking">Booking:</strong> booking@sleepsdeep.jp<br>
+          <strong data-i18n="contact.press">Press:</strong> press@sleepsdeep.jp<br>
+          <strong data-i18n="contact.general">General:</strong> info@sleepsdeep.jp
         </p>
         <div style="margin-top: 2rem;">
-          <h3 style="margin-bottom: 1rem;">Follow Us</h3>
+          <h3 style="margin-bottom: 1rem;" data-i18n="contact.followUs">Follow Us</h3>
           <div class="social-links">
             <a href="https://www.instagram.com/_sleeps_deep" target="_blank" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffe8e6">
@@ -968,33 +1059,36 @@
       </div>
       <div>
         <div class="contact-form">
-          <h3 style="font-family: 'Orbitron', sans-serif; color: var(--primary-red); margin-bottom: 1rem;">Send Us a Message</h3>
-          <form id="contactForm">
+          <h3 style="font-family: 'Orbitron', sans-serif; color: var(--primary-red); margin-bottom: 1rem;" data-i18n="contact.sendMessage">Send Us a Message</h3>
+          <form id="contactForm" action="https://formsubmit.co/info@sleepsdeep.jp" method="POST">
+            <input type="hidden" name="_subject" value="New Contact Form Submission - Sleeps Deep Website">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name" data-i18n="form.name">Name</label>
               <input type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="email" data-i18n="form.email">Email</label>
               <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-              <label for="subject">Subject</label>
+              <label for="subject" data-i18n="form.subject">Subject</label>
               <input type="text" id="subject" name="subject" required>
             </div>
             <div class="form-group">
-              <label for="message">Message</label>
+              <label for="message" data-i18n="form.message">Message</label>
               <textarea id="message" name="message" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="form.sendButton">Send Message</button>
           </form>
         </div>
         <div class="newsletter">
-          <h3>Stay Updated</h3>
-          <p style="margin-bottom: 1rem; color: var(--text-gray);">Subscribe to our newsletter for the latest news, releases, and tour dates.</p>
+          <h3 data-i18n="newsletter.title">Stay Updated</h3>
+          <p style="margin-bottom: 1rem; color: var(--text-gray);" data-i18n="newsletter.description">Subscribe to our newsletter for the latest news, releases, and tour dates.</p>
           <form class="newsletter-form" id="newsletterForm">
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit" class="btn btn-primary">Subscribe</button>
+            <input type="email" id="newsletterEmail" placeholder="Enter your email" data-i18n="form.emailPlaceholder" required>
+            <button type="submit" class="btn btn-primary" data-i18n="newsletter.subscribe">Subscribe</button>
           </form>
         </div>
       </div>
@@ -1006,12 +1100,12 @@
     <div class="footer-content">
       <img src="assets/logos/Logo_vector.svg" alt="Sleeps Deep" class="footer-logo">
       <div class="footer-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#music">Music</a>
-        <a href="#tour">Tour</a>
-        <a href="#media">Media</a>
-        <a href="#contact">Contact</a>
+        <a href="#home" data-i18n="nav.home">Home</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#music" data-i18n="nav.music">Music</a>
+        <a href="#tour" data-i18n="nav.tour">Tour</a>
+        <a href="#media" data-i18n="nav.media">Media</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
       <div class="footer-social">
         <a href="https://www.instagram.com/_sleeps_deep" target="_blank" aria-label="Instagram">
@@ -1021,7 +1115,7 @@
         </a>
       </div>
       <div class="copyright">
-        <p>&copy; 2024 Sleeps Deep. All rights reserved.</p>
+        <p data-i18n="footer.copyright">&copy; 2024 Sleeps Deep. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -1034,7 +1128,144 @@
     </div>
   </div>
 
+  <!-- Load translations from JS file (works with file:// protocol) -->
+  <script src="translations.js"></script>
+
   <script>
+    // Translations are loaded from translations.js
+    let currentLanguage = 'en';
+
+    function loadTranslations() {
+      // Translations object is already available from translations.js
+      if (typeof translations !== 'undefined') {
+        updateLanguage(currentLanguage);
+      } else {
+        console.error('Translations not loaded from translations.js');
+      }
+    }
+
+    function updateLanguage(lang) {
+      currentLanguage = lang;
+      
+      if (!translations[lang]) {
+        console.error('Translations not loaded for language:', lang);
+        return;
+      }
+      
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (!key) return;
+        
+        const keys = key.split('.');
+        let translation = translations[lang];
+        
+        for (let k of keys) {
+          if (translation && typeof translation === 'object') {
+            translation = translation[k];
+          } else {
+            translation = null;
+            break;
+          }
+        }
+        
+        if (translation) {
+          if (element.tagName === 'INPUT' && key.includes('emailPlaceholder')) {
+            element.placeholder = translation;
+          } else {
+            // Clear existing text and set new translation
+            element.textContent = translation;
+          }
+        } else {
+          console.warn('Translation not found for key:', key);
+        }
+      });
+
+      // Update page title and meta description
+      if (translations[lang] && translations[lang].meta) {
+        document.title = translations[lang].meta.title;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.content = translations[lang].meta.description;
+        }
+      }
+      
+      // Adjust button font size after language change
+      setTimeout(() => {
+        adjustButtonFontSize();
+      }, 50);
+    }
+
+    // Function to adjust button font size to fit two buttons on one line
+    function adjustButtonFontSize() {
+      const buttons = document.querySelectorAll('.cta-buttons .btn');
+      if (buttons.length !== 2) return;
+      
+      const container = document.querySelector('.cta-buttons');
+      if (!container) return;
+      
+      // Available width: 400px container - 1rem gap (16px) - padding
+      const availableWidth = 384; // 400px - 16px gap
+      const minFontSize = 12;
+      const maxFontSize = 21;
+      
+      // Check if Japanese and reduce max font size by 5%
+      const isJapanese = currentLanguage === 'jp';
+      const adjustedMaxFontSize = isJapanese ? Math.floor(maxFontSize * 0.95) : maxFontSize;
+      
+      // Binary search for optimal font size
+      let low = minFontSize;
+      let high = adjustedMaxFontSize;
+      let bestSize = adjustedMaxFontSize;
+      
+      // Test with a temporary element
+      const testElement = document.createElement('span');
+      testElement.style.visibility = 'hidden';
+      testElement.style.position = 'absolute';
+      testElement.style.fontFamily = 'Orbitron, sans-serif';
+      testElement.style.fontWeight = '700';
+      testElement.style.textTransform = 'uppercase';
+      testElement.style.letterSpacing = '1px';
+      testElement.style.whiteSpace = 'nowrap';
+      document.body.appendChild(testElement);
+      
+      while (low <= high) {
+        const mid = Math.floor((low + high) / 2);
+        testElement.style.fontSize = mid + 'px';
+        
+        let totalWidth = 0;
+        buttons.forEach((btn, index) => {
+          testElement.textContent = btn.textContent;
+          const width = testElement.offsetWidth;
+          // Add padding: 12px * 2 + 20px * 2 = 64px per button
+          totalWidth += width + 64;
+        });
+        totalWidth += 16; // gap
+        
+        if (totalWidth <= availableWidth) {
+          bestSize = mid;
+          low = mid + 1;
+        } else {
+          high = mid - 1;
+        }
+      }
+      
+      document.body.removeChild(testElement);
+      
+      // Apply the calculated font size
+      buttons.forEach(btn => {
+        btn.style.fontSize = bestSize + 'px';
+      });
+    }
+
+    // Initialize on page load
+    loadTranslations();
+    
+    // Adjust button font size after translations load
+    setTimeout(() => {
+      adjustButtonFontSize();
+    }, 100);
+
     // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
@@ -1077,16 +1308,49 @@
     });
 
     // Contact form submission
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      alert('Thank you for your message! We will get back to you soon.');
-      e.target.reset();
+      const form = e.target;
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+      
+      // Show loading state
+      const sendingText = translations[currentLanguage]?.form?.sending || 'Sending...';
+      submitButton.textContent = sendingText;
+      submitButton.disabled = true;
+      
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          const successMsg = translations[currentLanguage]?.alerts?.messageSent || 'Thank you for your message! We will get back to you soon.';
+          alert(successMsg);
+          form.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        const errorMsg = translations[currentLanguage]?.alerts?.messageError || 'There was an error sending your message. Please try again or email us directly at info@sleepsdeep.jp';
+        alert(errorMsg);
+      } finally {
+        const sendText = translations[currentLanguage]?.form?.sendButton || 'Send Message';
+        submitButton.textContent = sendText;
+        submitButton.disabled = false;
+      }
     });
 
     // Newsletter form submission
     document.getElementById('newsletterForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('Thank you for subscribing!');
+      const subscribedMsg = translations[currentLanguage]?.alerts?.subscribed || 'Thank you for subscribing!';
+      alert(subscribedMsg);
       e.target.reset();
     });
 
