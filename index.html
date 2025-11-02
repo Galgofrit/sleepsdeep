@@ -9,12 +9,12 @@
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap');
 
     :root {
-      --primary-blue: #3b82f6;
-      --dark-blue: #1e40af;
-      --light-blue: #60a5fa;
+      --primary-blue: #00d9ff;
+      --dark-blue: #0099cc;
+      --light-blue: #33e0ff;
       --black: #000000;
       --dark-gray: #111111;
-      --light-gray: #e0e7ff;
+      --light-gray: #ccf5ff;
       --text-gray: #cccccc;
       /* Keep red for some accents if needed */
       --primary-red: #ee2917;
@@ -477,6 +477,107 @@
       font-size: 1.1rem;
     }
 
+    /* Fullscreen Image Modal */
+    .image-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .image-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .image-modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      margin: auto;
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .image-modal-content img {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 0 50px rgba(238, 41, 23, 0.3);
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: var(--text-gray);
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(238, 41, 23, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .image-modal-close:hover {
+      background: rgba(238, 41, 23, 0.8);
+      border-color: var(--primary-red);
+      transform: rotate(90deg);
+      box-shadow: 0 0 20px var(--primary-red);
+    }
+
+    .image-modal-close::before,
+    .image-modal-close::after {
+      content: '';
+      position: absolute;
+      width: 3px;
+      height: 25px;
+      background: var(--text-gray);
+    }
+
+    .image-modal-close::before {
+      transform: rotate(45deg);
+    }
+
+    .image-modal-close::after {
+      transform: rotate(-45deg);
+    }
+
     /* Contact & Newsletter */
     .contact {
       background: var(--dark-gray);
@@ -925,6 +1026,14 @@
     </div>
   </footer>
 
+  <!-- Fullscreen Image Modal -->
+  <div id="imageModal" class="image-modal">
+    <span class="image-modal-close" id="closeModal"></span>
+    <div class="image-modal-content">
+      <img id="modalImage" src="" alt="Fullscreen Image">
+    </div>
+  </div>
+
   <script>
     // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
@@ -979,6 +1088,44 @@
       e.preventDefault();
       alert('Thank you for subscribing!');
       e.target.reset();
+    });
+
+    // Fullscreen image modal
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+
+    // Open modal when clicking on gallery images
+    galleryItems.forEach(img => {
+      img.addEventListener('click', function() {
+        modalImage.src = this.src;
+        modalImage.alt = this.alt;
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+      });
+    });
+
+    // Close modal when clicking X
+    closeModal.addEventListener('click', () => {
+      imageModal.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scrolling
+    });
+
+    // Close modal when clicking outside the image
+    imageModal.addEventListener('click', function(e) {
+      if (e.target === imageModal) {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+      }
     });
   </script>
 </body>
